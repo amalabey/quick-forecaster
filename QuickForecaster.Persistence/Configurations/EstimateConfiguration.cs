@@ -15,7 +15,7 @@ namespace QuickForecaster.Persistence.Configurations
 
             builder.Property<int?>("ClientId");
 
-            builder.Property<string>("Estimator");
+            builder.OwnsOne(p => p.Estimator);
 
             builder.HasKey("Id");
 

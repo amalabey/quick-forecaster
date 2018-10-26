@@ -8,7 +8,7 @@ namespace QuickForecaster.Domain.Entities
     public class Estimate
     {
         public int Id { get; set; }
-        public string Estimator { get; set; }
+        public Contact Estimator { get; set; }
         public ICollection<BacklogItem> BacklogItems { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace QuickForecaster.Persistence.Configurations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            builder.Property<string>("AccountManager");
+            builder.OwnsOne(p => p.AccountManager);
 
             builder.Property<string>("Name");
 

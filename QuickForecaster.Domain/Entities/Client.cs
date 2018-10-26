@@ -9,7 +9,7 @@ namespace QuickForecaster.Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string AccountManager { get; set; }
+        public Contact AccountManager { get; set; }
         public ICollection<Estimate> Estimates { get; set; }
     }
 }
