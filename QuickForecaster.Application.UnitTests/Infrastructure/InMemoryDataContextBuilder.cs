@@ -18,15 +18,10 @@ namespace QuickForecaster.Application.UnitTests.Infrastructure
             return this;
         }
 
-        public InMemoryDataContextBuilder WithTestClients(int count, Func<TestClientDataBuilder, int, TestClientDataBuilder> builderFunc)
+        public InMemoryDataContextBuilder WithClients(IList<Client> clients)
         {
             _clients = _clients ?? new List<Client>();
-            for (int i = 0; i < count; i++)
-            {
-                var testClient = builderFunc(new TestClientDataBuilder(), i).Build();
-                _clients.Add(testClient);
-            }
-
+            _clients.AddRange(clients);
             return this;
         }
 

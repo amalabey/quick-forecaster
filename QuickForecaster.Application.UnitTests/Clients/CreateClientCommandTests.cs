@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuickForecaster.Application.Clients.Commands;
 using QuickForecaster.Application.UnitTests.Infrastructure;
-using QuickForecaster.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using FluentAssertions;
+using QuickForecaster.Domain.Entities;
+using FizzWare.NBuilder;
+using System.Linq;
 
 namespace QuickForecaster.Application.UnitTests.Clients
 {
@@ -19,9 +18,16 @@ namespace QuickForecaster.Application.UnitTests.Clients
         {
             var dbName = "QuickForecasterUnitTests";
 
+            var clients = Builder<Client>
+                .CreateListOfSize(10)
+                .All()
+                .With((c, index) => c.AccountManager = new Domain.ValueObjects.Contact($"Email-{index}", $"DisplayName-{index}"))
+                .With(x => x.Id = 0)
+                .Build();
+
             using (var db = new InMemoryDataContextBuilder()
                 .WithDbName(dbName)
-                .WithTestClients(10, (builder, index) => builder.WithDummyClient(index).WithDummyAccountManager(index))
+                .WithClients(clients)
                 .BuildScoped())
             {
                 var handler = new CreateClientCommandHandler(db.Context);
