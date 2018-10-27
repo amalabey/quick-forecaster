@@ -1,12 +1,8 @@
 ﻿using FizzWare.NBuilder;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using QuickForecaster.Application.Clients.Queries;
 using QuickForecaster.Application.UnitTests.Infrastructure;
 using QuickForecaster.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;

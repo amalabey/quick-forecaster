@@ -22,6 +22,7 @@ namespace QuickForecaster.Application.Clients.Queries
         public async Task<IList<ClientDto>> Handle(GetAllClientsQuery request, CancellationToken cancellationToken)
         {
             var clients = await _context.Clients
+                .AsNoTracking()
                 .Select(ClientDto.Projection)
                 .ToListAsync();
 

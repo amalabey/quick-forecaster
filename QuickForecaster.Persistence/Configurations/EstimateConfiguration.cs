@@ -23,8 +23,8 @@ namespace QuickForecaster.Persistence.Configurations
 
             builder.ToTable("Estimates");
 
-            builder.HasOne("QuickForecaster.Domain.Entities.Client")
-                        .WithMany("Estimates")
+            builder.HasOne(e => e.Client)
+                        .WithMany(e => e.Estimates)
                         .HasForeignKey("ClientId");
         }
     }

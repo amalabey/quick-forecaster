@@ -14,4 +14,8 @@
     <PackageReference Include="MediatR" Version="5.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Estimates\Commands\" />
+  </ItemGroup>
+
 </Project>

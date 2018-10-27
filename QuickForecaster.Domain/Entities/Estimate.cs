@@ -10,6 +10,7 @@ namespace QuickForecaster.Domain.Entities
         public int Id { get; set; }
         public string ProjectName { get; set; }
         public Contact Estimator { get; set; }
+        public Client Client { get; set; }
         public ICollection<BacklogItem> BacklogItems { get; set; }
     }
 }
