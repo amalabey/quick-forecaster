@@ -14,17 +14,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6D5423C7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{595EFF49-7935-458A-B5E7-31F132F3172E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Domain", "QuickForecaster.Domain\QuickForecaster.Domain.csproj", "{B74ADC37-8711-4F7C-A423-AF02FD3D98E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickForecaster.Domain", "QuickForecaster.Domain\QuickForecaster.Domain.csproj", "{B74ADC37-8711-4F7C-A423-AF02FD3D98E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Application", "QuickForecaster.Application\QuickForecaster.Application.csproj", "{926ED632-594E-433B-BA36-53C2D90ABD80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickForecaster.Application", "QuickForecaster.Application\QuickForecaster.Application.csproj", "{926ED632-594E-433B-BA36-53C2D90ABD80}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CF0327ED-1C97-4E34-9157-81F00A91234F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Persistence", "QuickForecaster.Persistence\QuickForecaster.Persistence.csproj", "{2DB0ADF7-7133-43EC-89F6-594FF45532F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickForecaster.Persistence", "QuickForecaster.Persistence\QuickForecaster.Persistence.csproj", "{2DB0ADF7-7133-43EC-89F6-594FF45532F9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{7E34F914-C6BE-4F9C-A6C9-829E87BC0C88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Web", "QuickForecaster.Web\QuickForecaster.Web.csproj", "{2BA04E82-105A-465C-8800-CFF8C824358C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickForecaster.Web", "QuickForecaster.Web\QuickForecaster.Web.csproj", "{2BA04E82-105A-465C-8800-CFF8C824358C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{524C2DE4-5FAD-4ABB-BACA-AD75E2DA36FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Application.UnitTests", "QuickForecaster.Application.UnitTests\QuickForecaster.Application.UnitTests.csproj", "{E9235A50-3E31-4872-A08B-2768C9FEBBF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +52,10 @@ Global
 		{2BA04E82-105A-465C-8800-CFF8C824358C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BA04E82-105A-465C-8800-CFF8C824358C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BA04E82-105A-465C-8800-CFF8C824358C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9235A50-3E31-4872-A08B-2768C9FEBBF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9235A50-3E31-4872-A08B-2768C9FEBBF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9235A50-3E31-4872-A08B-2768C9FEBBF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9235A50-3E31-4872-A08B-2768C9FEBBF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,8 @@ Global
 		{2DB0ADF7-7133-43EC-89F6-594FF45532F9} = {CF0327ED-1C97-4E34-9157-81F00A91234F}
 		{7E34F914-C6BE-4F9C-A6C9-829E87BC0C88} = {C8E7DA8F-2CC2-4503-800C-0E08B82D5DD5}
 		{2BA04E82-105A-465C-8800-CFF8C824358C} = {7E34F914-C6BE-4F9C-A6C9-829E87BC0C88}
+		{524C2DE4-5FAD-4ABB-BACA-AD75E2DA36FB} = {6D5423C7-97D0-4B83-BE88-B06C0CC71DD3}
+		{E9235A50-3E31-4872-A08B-2768C9FEBBF0} = {524C2DE4-5FAD-4ABB-BACA-AD75E2DA36FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {623111B1-B3D9-483F-988E-02AF0478DC07}
