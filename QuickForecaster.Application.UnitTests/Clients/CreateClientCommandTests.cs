@@ -8,6 +8,8 @@ using FluentAssertions;
 using QuickForecaster.Domain.Entities;
 using FizzWare.NBuilder;
 using System.Linq;
+using System;
+using QuickForecaster.Application.Exceptions;
 
 namespace QuickForecaster.Application.UnitTests.Clients
 {
@@ -45,6 +47,26 @@ namespace QuickForecaster.Application.UnitTests.Clients
                         .Should()
                         .NotBeNull();
                 }
+            }
+        }
+
+        [Fact]
+        public async Task Handle_WithEmptyClientName_ThrowsException()
+        {
+            var dbName = "QuickForecasterUnitTests";
+
+            using (var db = new InMemoryDataContextBuilder()
+                .WithDbName(dbName)
+                .BuildScoped())
+            {
+                var handler = new CreateClientCommandHandler(db.Context);
+
+                await Assert.ThrowsAsync<ValidationException>(() => handler.Handle(new CreateClientCommand
+                {
+                    Name = string.Empty,
+                    AccountManagerEmail = "mgr1@fabrikam.com",
+                    AccountManagerName = "Manager One"
+                }, CancellationToken.None));
             }
         }
     }

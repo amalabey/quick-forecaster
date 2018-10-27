@@ -1,10 +1,10 @@
 ﻿using MediatR;
+using QuickForecaster.Application.Exceptions;
 using QuickForecaster.Domain.Entities;
 using QuickForecaster.Domain.ValueObjects;
 using QuickForecaster.Persistence;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
