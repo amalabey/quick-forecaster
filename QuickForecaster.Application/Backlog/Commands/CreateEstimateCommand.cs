@@ -1,17 +1,17 @@
-﻿using QuickForecaster.Domain.Enums;
+﻿using MediatR;
+using QuickForecaster.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QuickForecaster.Domain.Entities
+namespace QuickForecaster.Application.Backlog.Commands
 {
-    public class BacklogItem
+    public class CreateBackloItemCommand : IRequest
     {
-        public int Id { get; set; }
+        public int EstimateId { get; set; }
         public string Task { get; set; }
         public ConfidenceLevel Confidence { get; set; }
         public decimal PessimisticEstimate { get; set; }
         public decimal OptimisticEstimate { get; set; }
-        public Estimate Estimate { get; set; }
     }
 }

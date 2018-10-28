@@ -35,8 +35,8 @@ namespace QuickForecaster.Persistence.Configurations
 
             builder.ToTable("BacklogItems");
 
-            builder.HasOne("QuickForecaster.Domain.Entities.Estimate")
-                        .WithMany("BacklogItems")
+            builder.HasOne(b => b.Estimate)
+                        .WithMany(e => e.BacklogItems)
                         .HasForeignKey("EstimateId");
         }
     }
