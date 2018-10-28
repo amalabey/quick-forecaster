@@ -10,13 +10,14 @@ using FizzWare.NBuilder;
 using QuickForecaster.Application.Exceptions;
 using QuickForecaster.Application.Estimates.Commands;
 using QuickForecaster.Application.Backlog.Commands;
+using QuickForecaster.Application.Backlog.Queries;
 
 namespace QuickForecaster.Application.UnitTests.Backlog
 {
-    public class CreateBacklogItemCommandTests
+    public class GetBacklogItemsQueryTests
     {
         [Fact]
-        public async Task Handle_WithValidBacklogItem_CreateTheRecord()
+        public async Task Handle_WithValidEstimate_GetAllBacklogItems()
         {
             var dbName = "QuickForecasterUnitTests";
 
@@ -34,31 +35,26 @@ namespace QuickForecaster.Application.UnitTests.Backlog
                 .TheRest().With(e => e.Client = clients[1])
                 .Build();
 
+            var backlogItems = Builder<BacklogItem>
+                .CreateListOfSize(30)
+                .All().With(x => x.Id = 0)
+                .TheFirst(10).With(bi => bi.Estimate = estimates[0])
+                .TheNext(10).With(bi => bi.Estimate = estimates[1])
+                .TheRest().With(bi => bi.Estimate = estimates[2])
+                .Build();
+
             using (var db = new InMemoryDataContextBuilder()
                 .WithDbName(dbName)
                 .WithClients(clients)
                 .WithEstimates(estimates)
+                .WithBackloItems(backlogItems)
                 .BuildScoped())
             {
-                var handler = new CreateBacklogItemCommandHandler(db.Context);
-                string task = "Create home page";
-                await handler.Handle(new CreateBackloItemCommand
-                {
-                    EstimateId = 1,
-                    Task = task,
-                    Confidence = Domain.Enums.ConfidenceLevel.High,
-                    OptimisticEstimate = 6,
-                    PessimisticEstimate = 8
-                }, CancellationToken.None);
+                var handler = new GetBacklogItemsQueryHandler(db.Context);
 
-                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(dbName).Build())
-                {
-                    varifyContext.BacklogItems
-                        .Include(bi => bi.Estimate)
-                        .FirstOrDefaultAsync(bi => bi.Estimate.Id == 1 && bi.Task == task)
-                        .Should()
-                        .NotBeNull();
-                }
+                var result = await handler.Handle(new GetBacklogItemsQuery(1), CancellationToken.None);
+                result.Should().NotBeNull();
+                result.Count.Should().Be(10);
             }
         }
     }
