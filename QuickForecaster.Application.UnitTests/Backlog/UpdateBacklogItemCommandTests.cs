@@ -20,8 +20,6 @@ namespace QuickForecaster.Application.UnitTests.Backlog
         [Fact]
         public async Task Handle_WithValidBackloItemDetails_UpdatesTheRecord()
         {
-            var dbName = "QuickForecasterUnitTests";
-
             var clients = Builder<Client>
                 .CreateListOfSize(10)
                 .All()
@@ -45,7 +43,6 @@ namespace QuickForecaster.Application.UnitTests.Backlog
                 .Build();
 
             using (var db = new InMemoryDataContextBuilder()
-                .WithDbName(dbName)
                 .WithClients(clients)
                 .WithEstimates(estimates)
                 .WithBackloItems(backlogItems)
@@ -55,16 +52,16 @@ namespace QuickForecaster.Application.UnitTests.Backlog
                 string task = "Create contact-us page";
                 await handler.Handle(new UpdateBackloItemCommand
                 {
-                    BacklogItemId = 1,
+                    BacklogItemId = backlogItems[0].Id,
                     Task = task,
                     Confidence = Domain.Enums.ConfidenceLevel.Low,
                     OptimisticEstimate = 10,
                     PessimisticEstimate = 20
                 }, CancellationToken.None);
 
-                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(dbName).Build())
+                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(db.DatabaseName).Build())
                 {
-                    var updatedItem = await varifyContext.BacklogItems.FirstOrDefaultAsync(bi => bi.Id == 1);
+                    var updatedItem = await varifyContext.BacklogItems.FirstOrDefaultAsync(bi => bi.Task == task);
 
                     updatedItem.Should().NotBeNull();
                     updatedItem.Task.Should().Be(task);

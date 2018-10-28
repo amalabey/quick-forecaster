@@ -19,8 +19,6 @@ namespace QuickForecaster.Application.UnitTests.Backlog
         [Fact]
         public async Task Handle_WithValidEstimate_GetAllBacklogItems()
         {
-            var dbName = "QuickForecasterUnitTests";
-
             var clients = Builder<Client>
                 .CreateListOfSize(10)
                 .All()
@@ -44,7 +42,6 @@ namespace QuickForecaster.Application.UnitTests.Backlog
                 .Build();
 
             using (var db = new InMemoryDataContextBuilder()
-                .WithDbName(dbName)
                 .WithClients(clients)
                 .WithEstimates(estimates)
                 .WithBackloItems(backlogItems)
@@ -52,7 +49,7 @@ namespace QuickForecaster.Application.UnitTests.Backlog
             {
                 var handler = new GetBacklogItemsQueryHandler(db.Context);
 
-                var result = await handler.Handle(new GetBacklogItemsQuery(1), CancellationToken.None);
+                var result = await handler.Handle(new GetBacklogItemsQuery(estimates[0].Id), CancellationToken.None);
                 result.Should().NotBeNull();
                 result.Count.Should().Be(10);
             }

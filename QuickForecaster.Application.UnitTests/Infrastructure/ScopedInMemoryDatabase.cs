@@ -9,9 +9,12 @@ namespace QuickForecaster.Application.UnitTests.Infrastructure
     {
         public QuickForecasterDbContext Context { get; private set; }
 
-        public ScopedInmemoryDatabase(QuickForecasterDbContext context)
+        public string DatabaseName { get; private set; }
+
+        public ScopedInmemoryDatabase(QuickForecasterDbContext context, string dbName)
         {
             Context = context;
+            DatabaseName = dbName;
         }
 
         public void Dispose()

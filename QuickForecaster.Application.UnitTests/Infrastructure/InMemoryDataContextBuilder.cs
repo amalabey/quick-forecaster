@@ -14,6 +14,11 @@ namespace QuickForecaster.Application.UnitTests.Infrastructure
         private List<Estimate> _estimats;
         private List<BacklogItem> _backlogItems;
 
+        public InMemoryDataContextBuilder()
+        {
+            this._dbName = Guid.NewGuid().ToString();
+        }
+
         public InMemoryDataContextBuilder WithDbName(string dbName)
         {
             _dbName = dbName;
@@ -43,13 +48,13 @@ namespace QuickForecaster.Application.UnitTests.Infrastructure
 
         public ScopedInmemoryDatabase BuildScoped()
         {
-            return new ScopedInmemoryDatabase(Build());
+            return new ScopedInmemoryDatabase(Build(), _dbName);
         }
 
         public QuickForecasterDbContext Build()
         {
             var options = new DbContextOptionsBuilder<QuickForecasterDbContext>()
-                .UseInMemoryDatabase(this._dbName)
+                .UseInMemoryDatabase(databaseName: _dbName)
                 .EnableSensitiveDataLogging(true)
                 .Options;
             var context = new QuickForecasterDbContext(options);

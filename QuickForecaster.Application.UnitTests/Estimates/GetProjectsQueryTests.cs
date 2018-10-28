@@ -16,8 +16,6 @@ namespace QuickForecaster.Application.UnitTests.Estimates
         [Fact]
         public async Task Handle_WithExistingEstimates_ReturnClientProjects()
         {
-            var dbName = "QuickForecasterUnitTests";
-
             var clients = Builder<Client>
                 .CreateListOfSize(10)
                 .All()
@@ -36,7 +34,6 @@ namespace QuickForecaster.Application.UnitTests.Estimates
             string clientName = clients[0].Name;
 
             using (var db = new InMemoryDataContextBuilder()
-                .WithDbName(dbName)
                 .WithClients(clients)
                 .WithEstimates(estimates)
                 .BuildScoped())

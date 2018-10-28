@@ -18,8 +18,6 @@ namespace QuickForecaster.Application.UnitTests.Clients
         [Fact]
         public async Task Handle_WithValidClientDetails_CreateTheRecord()
         {
-            var dbName = "QuickForecasterUnitTests";
-
             var clients = Builder<Client>
                 .CreateListOfSize(10)
                 .All()
@@ -28,7 +26,6 @@ namespace QuickForecaster.Application.UnitTests.Clients
                 .Build();
 
             using (var db = new InMemoryDataContextBuilder()
-                .WithDbName(dbName)
                 .WithClients(clients)
                 .BuildScoped())
             {
@@ -40,7 +37,7 @@ namespace QuickForecaster.Application.UnitTests.Clients
                     AccountManagerName = "Manager One"
                 }, CancellationToken.None);
 
-                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(dbName).Build())
+                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(db.DatabaseName).Build())
                 {
                     varifyContext.Clients
                         .FirstOrDefaultAsync(c => c.Name == "Fabrikam")
@@ -53,10 +50,7 @@ namespace QuickForecaster.Application.UnitTests.Clients
         [Fact]
         public async Task Handle_WithEmptyClientName_ThrowsException()
         {
-            var dbName = "QuickForecasterUnitTests";
-
             using (var db = new InMemoryDataContextBuilder()
-                .WithDbName(dbName)
                 .BuildScoped())
             {
                 var handler = new CreateClientCommandHandler(db.Context);

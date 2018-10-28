@@ -25,7 +25,8 @@ namespace QuickForecaster.Persistence
 
             modelBuilder.ApplyAllConfigurations();
 
-            modelBuilder.Seed();
+            /// Below was only required to get the ef migration generated
+            ///modelBuilder.Seed();
         }
     }
 }

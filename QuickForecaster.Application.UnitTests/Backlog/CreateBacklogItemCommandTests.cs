@@ -18,8 +18,6 @@ namespace QuickForecaster.Application.UnitTests.Backlog
         [Fact]
         public async Task Handle_WithValidBacklogItem_CreateTheRecord()
         {
-            var dbName = "QuickForecasterUnitTests";
-
             var clients = Builder<Client>
                 .CreateListOfSize(10)
                 .All()
@@ -35,7 +33,6 @@ namespace QuickForecaster.Application.UnitTests.Backlog
                 .Build();
 
             using (var db = new InMemoryDataContextBuilder()
-                .WithDbName(dbName)
                 .WithClients(clients)
                 .WithEstimates(estimates)
                 .BuildScoped())
@@ -44,18 +41,18 @@ namespace QuickForecaster.Application.UnitTests.Backlog
                 string task = "Create home page";
                 await handler.Handle(new CreateBackloItemCommand
                 {
-                    EstimateId = 1,
+                    EstimateId = estimates[0].Id,
                     Task = task,
                     Confidence = Domain.Enums.ConfidenceLevel.High,
                     OptimisticEstimate = 6,
                     PessimisticEstimate = 8
                 }, CancellationToken.None);
 
-                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(dbName).Build())
+                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(db.DatabaseName).Build())
                 {
                     varifyContext.BacklogItems
                         .Include(bi => bi.Estimate)
-                        .FirstOrDefaultAsync(bi => bi.Estimate.Id == 1 && bi.Task == task)
+                        .FirstOrDefaultAsync(bi => bi.Estimate.Id == estimates[0].Id && bi.Task == task)
                         .Should()
                         .NotBeNull();
                 }

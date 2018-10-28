@@ -17,8 +17,6 @@ namespace QuickForecaster.Application.UnitTests.Estimates
         [Fact]
         public async Task Handle_WithValidProjectDetails_CreateTheRecord()
         {
-            var dbName = "QuickForecasterUnitTests";
-
             var clients = Builder<Client>
                 .CreateListOfSize(10)
                 .All()
@@ -27,23 +25,23 @@ namespace QuickForecaster.Application.UnitTests.Estimates
                 .Build();
 
             using (var db = new InMemoryDataContextBuilder()
-                .WithDbName(dbName)
                 .WithClients(clients)
                 .BuildScoped())
             {
                 var handler = new CreateEstimateCommandHandler(db.Context);
                 await handler.Handle(new CreateEstimateCommand
                 {
-                    ClientId = 1,
+                    ClientId = clients[0].Id,
                     Name = "ProjectX",
                     EstimatorEmail = "jdoe@contoso.com",
                     EstimatorName = "John Doe"
                 }, CancellationToken.None);
 
-                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(dbName).Build())
+                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(db.DatabaseName).Build())
                 {
                     varifyContext.Estimates
-                        .FirstOrDefaultAsync(c => c.ProjectName == "ProjectX")
+                        .Include(e => e.Client)
+                        .FirstOrDefaultAsync(c => c.ProjectName == "ProjectX" && c.Client.Id == clients[0].Id)
                         .Should()
                         .NotBeNull();
                 }

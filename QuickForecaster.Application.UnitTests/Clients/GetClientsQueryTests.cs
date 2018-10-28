@@ -14,8 +14,6 @@ namespace QuickForecaster.Application.UnitTests.Clients
         [Fact]
         public async Task Handle_WithExistingClients_ReturnAllClients()
         {
-            var dbName = "QuickForecasterUnitTests";
-
             var clients = Builder<Client>
                 .CreateListOfSize(10)
                 .All()
@@ -24,7 +22,6 @@ namespace QuickForecaster.Application.UnitTests.Clients
                 .Build();
 
             using (var db = new InMemoryDataContextBuilder()
-                .WithDbName(dbName)
                 .WithClients(clients)
                 .BuildScoped())
             {
