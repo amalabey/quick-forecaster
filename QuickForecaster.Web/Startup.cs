@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QuickForecaster.Application.Clients.Queries;
+using QuickForecaster.Common;
+using QuickForecaster.Infrastructure;
 using QuickForecaster.Persistence;
 using System.Reflection;
 
@@ -25,6 +27,7 @@ namespace QuickForecaster.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(GetAllClientsQueryHandler).GetTypeInfo().Assembly);
+            services.AddTransient<IDateTimeProvider, MachineDateTimeProvider>();
 
             services.AddDbContext<QuickForecasterDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("QuickForecasterDatabase")));

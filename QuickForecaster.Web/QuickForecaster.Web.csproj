@@ -25,7 +25,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QuickForecaster.Application\QuickForecaster.Application.csproj" />
+    <ProjectReference Include="..\QuickForecaster.Common\QuickForecaster.Common.csproj" />
     <ProjectReference Include="..\QuickForecaster.Domain\QuickForecaster.Domain.csproj" />
+    <ProjectReference Include="..\QuickForecaster.Infrastructure\QuickForecaster.Infrastructure.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
