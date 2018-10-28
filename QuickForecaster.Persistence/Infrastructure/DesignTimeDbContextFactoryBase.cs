@@ -44,6 +44,7 @@ namespace QuickForecaster.Persistence.Infrastructure
             Console.WriteLine($"DesignTimeDbContextFactoryBase.Create(string): Connection string: '{connectionString}'.");
 
             var optionsBuilder = new DbContextOptionsBuilder<TContext>();
+            optionsBuilder.EnableSensitiveDataLogging(true);
 
             optionsBuilder.UseSqlServer(connectionString);
 

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using QuickForecaster.Domain.Entities;
 using QuickForecaster.Persistence.Extensions;
+using QuickForecaster.Persistence.Seed;
 
 namespace QuickForecaster.Persistence
 {
@@ -23,6 +24,8 @@ namespace QuickForecaster.Persistence
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.ApplyAllConfigurations();
+
+            modelBuilder.Seed();
         }
     }
 }
