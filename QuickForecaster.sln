@@ -32,15 +32,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickForecaster.Application
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{9C6CB11C-AA06-416D-8555-7EA548051637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Common", "QuickForecaster.Common\QuickForecaster.Common.csproj", "{2F8E7457-3742-46A5-94D2-C99BF8385F17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickForecaster.Common", "QuickForecaster.Common\QuickForecaster.Common.csproj", "{2F8E7457-3742-46A5-94D2-C99BF8385F17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Infrastructure", "QuickForecaster.Infrastructure\QuickForecaster.Infrastructure.csproj", "{D69CAAC0-5704-4B0A-8DE9-0C9E92DE69F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickForecaster.Infrastructure", "QuickForecaster.Infrastructure\QuickForecaster.Infrastructure.csproj", "{D69CAAC0-5704-4B0A-8DE9-0C9E92DE69F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{10717968-768A-4404-B929-485C56D11436}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Web.IntegrationTests", "QuickForecaster.Web.IntegrationTests\QuickForecaster.Web.IntegrationTests.csproj", "{25CE5A41-BB03-495E-B4D9-887F20B6361A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickForecaster.Web.IntegrationTests", "QuickForecaster.Web.IntegrationTests\QuickForecaster.Web.IntegrationTests.csproj", "{25CE5A41-BB03-495E-B4D9-887F20B6361A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Database.IntegrationTests", "QuickForecaster.Database.IntegrationTests\QuickForecaster.Database.IntegrationTests.csproj", "{E55418D3-672C-4093-8120-76C45655121F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickForecaster.Database.IntegrationTests", "QuickForecaster.Database.IntegrationTests\QuickForecaster.Database.IntegrationTests.csproj", "{E55418D3-672C-4093-8120-76C45655121F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Database.UnitTests", "QuickForecaster.Database.UnitTests\QuickForecaster.Database.UnitTests.csproj", "{71893160-45F4-4F2F-80B1-C73651E836F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{072956ED-4138-472B-AD8B-AA7215BB01BD}"
+	ProjectSection(SolutionItems) = preProject
+		QuickForecaster.runsettings = QuickForecaster.runsettings
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +91,10 @@ Global
 		{E55418D3-672C-4093-8120-76C45655121F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E55418D3-672C-4093-8120-76C45655121F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E55418D3-672C-4093-8120-76C45655121F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71893160-45F4-4F2F-80B1-C73651E836F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71893160-45F4-4F2F-80B1-C73651E836F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71893160-45F4-4F2F-80B1-C73651E836F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71893160-45F4-4F2F-80B1-C73651E836F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +115,7 @@ Global
 		{10717968-768A-4404-B929-485C56D11436} = {6D5423C7-97D0-4B83-BE88-B06C0CC71DD3}
 		{25CE5A41-BB03-495E-B4D9-887F20B6361A} = {10717968-768A-4404-B929-485C56D11436}
 		{E55418D3-672C-4093-8120-76C45655121F} = {10717968-768A-4404-B929-485C56D11436}
+		{71893160-45F4-4F2F-80B1-C73651E836F8} = {524C2DE4-5FAD-4ABB-BACA-AD75E2DA36FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {623111B1-B3D9-483F-988E-02AF0478DC07}
