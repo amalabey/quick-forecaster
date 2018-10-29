@@ -40,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "Integra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Web.IntegrationTests", "QuickForecaster.Web.IntegrationTests\QuickForecaster.Web.IntegrationTests.csproj", "{25CE5A41-BB03-495E-B4D9-887F20B6361A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickForecaster.Database.IntegrationTests", "QuickForecaster.Database.IntegrationTests\QuickForecaster.Database.IntegrationTests.csproj", "{E55418D3-672C-4093-8120-76C45655121F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{25CE5A41-BB03-495E-B4D9-887F20B6361A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25CE5A41-BB03-495E-B4D9-887F20B6361A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25CE5A41-BB03-495E-B4D9-887F20B6361A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E55418D3-672C-4093-8120-76C45655121F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55418D3-672C-4093-8120-76C45655121F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55418D3-672C-4093-8120-76C45655121F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55418D3-672C-4093-8120-76C45655121F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{D69CAAC0-5704-4B0A-8DE9-0C9E92DE69F2} = {CF0327ED-1C97-4E34-9157-81F00A91234F}
 		{10717968-768A-4404-B929-485C56D11436} = {6D5423C7-97D0-4B83-BE88-B06C0CC71DD3}
 		{25CE5A41-BB03-495E-B4D9-887F20B6361A} = {10717968-768A-4404-B929-485C56D11436}
+		{E55418D3-672C-4093-8120-76C45655121F} = {10717968-768A-4404-B929-485C56D11436}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {623111B1-B3D9-483F-988E-02AF0478DC07}
