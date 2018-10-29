@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using QuickForecaster.Application.Clients.Commands;
 using QuickForecaster.Application.Clients.Queries;
 
 namespace QuickForecaster.Web.Controllers
@@ -21,6 +22,12 @@ namespace QuickForecaster.Web.Controllers
         public async Task<ActionResult<IEnumerable<ClientDto>>> GetAll()
         {
             return Ok(await _mediator.Send(new GetAllClientsQuery()));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateClientCommand command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }
