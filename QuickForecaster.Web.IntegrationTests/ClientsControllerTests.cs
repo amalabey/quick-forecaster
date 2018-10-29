@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,11 @@ namespace QuickForecaster.Web.IntegrationTests
 
             var response = await client.GetAsync("http://localhost/api/clients");
             var content = await response.Content.ReadAsStringAsync();
+            JArray clientsJson = JArray.Parse(content);
 
             response.EnsureSuccessStatusCode(); // Status Code 200-299
             Assert.NotNull(content);
+            Assert.Equal(4, clientsJson.Count);
         }
     }
 }
