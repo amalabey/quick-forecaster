@@ -59,5 +59,10 @@ namespace QuickForecaster.Application.Backlog.Commands
 
             return Unit.Value;
         }
+
+        private void ThisMethodWillTriggerAnIssue()
+        {
+
+        }
     }
 }
