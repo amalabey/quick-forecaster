@@ -244,14 +244,14 @@
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QuickForecaster.Database\QuickForecaster.Database.sqlproj">
+    <PreDeploy Include="Script.PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\QuickForecaster.Database\QuickForecaster.Database.sqlproj">
       <Name>QuickForecaster.Database</Name>
       <Project>{4fe5644a-dd1a-4126-b5d5-4daaaae1a76a}</Project>
       <Private>True</Private>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PreDeploy Include="Script.PreDeployment.sql" />
   </ItemGroup>
 </Project>

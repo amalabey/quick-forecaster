@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QuickForecaster.Web\QuickForecaster.Web.csproj" />
+    <ProjectReference Include="..\..\src\QuickForecaster.Web\QuickForecaster.Web.csproj" />
   </ItemGroup>
 
 </Project>

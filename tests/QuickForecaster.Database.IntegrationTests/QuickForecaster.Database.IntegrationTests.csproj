@@ -3,23 +3,23 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
-  
   <ItemGroup>
     <PackageReference Include="coverlet.msbuild" Version="2.3.1">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="FluentAssertions" Version="5.4.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.1.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="nbuilder" Version="6.0.0" />
     <PackageReference Include="NSubstitute" Version="3.1.0" />
+    <PackageReference Include="StoredProcedureEFCore" Version="0.3.9" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
   </ItemGroup>
-  
   <ItemGroup>
-    <ProjectReference Include="..\QuickForecaster.Application\QuickForecaster.Application.csproj" />
-    <ProjectReference Include="..\QuickForecaster.Persistence\QuickForecaster.Persistence.csproj" />
+    <ProjectReference Include="..\..\src\QuickForecaster.Domain\QuickForecaster.Domain.csproj" />
+    <ProjectReference Include="..\..\src\QuickForecaster.Persistence\QuickForecaster.Persistence.csproj" />
   </ItemGroup>
 </Project>
