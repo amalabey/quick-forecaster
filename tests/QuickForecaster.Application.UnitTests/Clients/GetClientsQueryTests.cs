@@ -16,6 +16,7 @@ namespace QuickForecaster.Application.UnitTests.Clients
         [Fact]
         public async Task Handle_WithExistingClients_ReturnAllClients()
         {
+            // Arrange
             var clients = Builder<Client>
                 .CreateListOfSize(10)
                 .All()
@@ -27,8 +28,12 @@ namespace QuickForecaster.Application.UnitTests.Clients
                 .WithClients(clients)
                 .BuildScoped())
             {
+                // Act
                 var handler = new GetAllClientsQueryHandler(db.Context);
-                (await handler.Handle(new GetAllClientsQuery(), CancellationToken.None)).Should().HaveCount(10);
+                var allClients = await handler.Handle(new GetAllClientsQuery(), CancellationToken.None);
+
+                // Assert
+                allClients.Should().HaveCount(10);
             }
         }
     }
