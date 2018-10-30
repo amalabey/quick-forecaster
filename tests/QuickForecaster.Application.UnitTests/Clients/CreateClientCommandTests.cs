@@ -32,10 +32,10 @@ namespace QuickForecaster.Application.UnitTests.Clients
 
                 using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(db.DatabaseName).Build())
                 {
-                    varifyContext.Clients
-                        .FirstOrDefaultAsync(c => c.Name == "Fabrikam")
-                        .Should()
-                        .NotBeNull();
+                    var client = await varifyContext.Clients.FirstOrDefaultAsync(c => c.Name == "Fabrikam");
+                    client.Should().NotBeNull();
+                    client.AccountManager.Email.Should().Be("mgr1@fabrikam.com");
+                    client.AccountManager.Email.Should().Be("Manager One");
                 }
             }
         }
