@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "Integra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{072956ED-4138-472B-AD8B-AA7215BB01BD}"
 	ProjectSection(SolutionItems) = preProject
+		QuickForecaster-CI.runsettings = QuickForecaster-CI.runsettings
 		QuickForecaster.runsettings = QuickForecaster.runsettings
 	EndProjectSection
 EndProject

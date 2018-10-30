@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <TestRunParameters>
+    <Parameter name="TestDatabaseConnectionString" value="Server=tcp:{sql.servername},1433;Initial Catalog={sql.databasename};Persist Security Info=False;User ID={sql.username};Password={sql.password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" />
+  </TestRunParameters>
+</RunSettings>
