@@ -28,10 +28,7 @@ namespace QuickForecaster.Application.UnitTests.Clients
                 .BuildScoped())
             {
                 var handler = new GetAllClientsQueryHandler(db.Context);
-                var allClients = await handler.Handle(new GetAllClientsQuery(), CancellationToken.None);
-
-                allClients.Should().NotBeNull();
-                allClients.Count.Should().Be(10);
+                (await handler.Handle(new GetAllClientsQuery(), CancellationToken.None)).Should().HaveCount(10);
             }
         }
     }
