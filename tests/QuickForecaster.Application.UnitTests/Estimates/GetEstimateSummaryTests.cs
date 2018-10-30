@@ -51,6 +51,8 @@ namespace QuickForecaster.Application.UnitTests.Estimates
                 .BuildScoped())
             {
                 var startDate = new System.DateTime(2000, 1, 1);
+
+                // Setup mock
                 var mockDateTimeProvider = Substitute.For<IDateTimeProvider>();
                 mockDateTimeProvider.Now.Returns(startDate);
 
