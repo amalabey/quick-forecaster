@@ -9,17 +9,29 @@ using QuickForecaster.Application.Backlog.Queries;
 using QuickForecaster.Application.Estimates.Queries;
 using NSubstitute;
 using QuickForecaster.Common;
+using System;
+using System.Collections.Generic;
 
 namespace QuickForecaster.Application.UnitTests.Estimates
 {
     public class GetEstimateSummaryTests
     {
+        public static IEnumerable<object[]> CorrectEstimatedDates =>
+            new List<object[]>
+            {
+                new object[] { 8, 16, 1, new DateTime(1900,1,11), new DateTime(1900,1,21)},
+                new object[] { 16, 8, 1, new DateTime(1900,1,21), new DateTime(1900,1,11)}
+            };
+
         [Theory]
-        [InlineData(5, 10, 1)]
-        [InlineData(1, 1000, 1)]
-        [InlineData(100, 1000, 5)]
-        public async Task Handle_WithExistingEstimates_ReturnCorrectSummary(decimal optimisticEstimate, decimal pessimisticEstimate, int teamSize)
+        [MemberData(nameof(CorrectEstimatedDates))]
+        public async Task Handle_WithExistingEstimates_ReturnCorrectSummary(decimal optimisticEstimate, 
+            decimal pessimisticEstimate, 
+            int teamSize, 
+            DateTime optimisticEndDate, 
+            DateTime pessimisticEndDate)
         {
+            // Arrange
             var clients = Builder<Client>
                 .CreateListOfSize(10)
                 .All()
@@ -50,23 +62,17 @@ namespace QuickForecaster.Application.UnitTests.Estimates
                 .WithBackloItems(backlogItems)
                 .BuildScoped())
             {
-                var startDate = new System.DateTime(2000, 1, 1);
-
                 // Setup mock
                 var mockDateTimeProvider = Substitute.For<IDateTimeProvider>();
-                mockDateTimeProvider.Now.Returns(startDate);
+                mockDateTimeProvider.Now.Returns(new DateTime(1900, 1, 1));
 
+                // Act
                 var handler = new GetSummaryQueryHandler(db.Context, mockDateTimeProvider);
-
                 var result = await handler.Handle(new GetSummaryQuery(estimates[0].Id, teamSize), CancellationToken.None);
 
-                decimal expectedOptimisticDuration = ((optimisticEstimate * 10) / 8) / teamSize;
-                decimal expectedPessimisticDuration = ((pessimisticEstimate * 10) / 8) / teamSize;
-
-                result.OptimisticDuration.Should().Be(expectedOptimisticDuration);
-                result.PessimisticDuration.Should().Be(expectedPessimisticDuration);
-                result.OptimisticEndDate.Should().BeSameDateAs(startDate.AddDays((double)expectedOptimisticDuration));
-                result.PessimisticEndDate.Should().BeSameDateAs(startDate.AddDays((double)expectedPessimisticDuration));
+                // Assert
+                result.OptimisticEndDate.Should().BeSameDateAs(optimisticEndDate);
+                result.PessimisticEndDate.Should().BeSameDateAs(pessimisticEndDate);
             }
         }
     }
