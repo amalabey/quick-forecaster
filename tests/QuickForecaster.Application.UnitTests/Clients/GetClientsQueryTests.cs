@@ -9,6 +9,8 @@ using Xunit;
 
 namespace QuickForecaster.Application.UnitTests.Clients
 {
+    [Collection("ClientTests")]
+    [Trait("Category", "ClientTests")]
     public class GetClientsQueryTests
     {
         [Fact]

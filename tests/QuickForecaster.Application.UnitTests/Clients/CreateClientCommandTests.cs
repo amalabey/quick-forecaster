@@ -13,21 +13,14 @@ using QuickForecaster.Application.Exceptions;
 
 namespace QuickForecaster.Application.UnitTests.Clients
 {
+    [Collection("ClientTests")]
+    [Trait("Category", "ClientTests")]
     public class CreateClientCommandTests
     {
         [Fact]
         public async Task Handle_WithValidClientDetails_CreateTheRecord()
         {
-            var clients = Builder<Client>
-                .CreateListOfSize(10)
-                .All()
-                .With((c, index) => c.AccountManager = new Domain.ValueObjects.Contact($"Email-{index}", $"DisplayName-{index}"))
-                .With(x => x.Id = 0)
-                .Build();
-
-            using (var db = new InMemoryDataContextBuilder()
-                .WithClients(clients)
-                .BuildScoped())
+            using (var db = new InMemoryDataContextBuilder().BuildScoped())
             {
                 var handler = new CreateClientCommandHandler(db.Context);
                 await handler.Handle(new CreateClientCommand
