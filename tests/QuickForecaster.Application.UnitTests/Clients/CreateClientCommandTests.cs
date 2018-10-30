@@ -10,6 +10,7 @@ using FizzWare.NBuilder;
 using System.Linq;
 using System;
 using QuickForecaster.Application.Exceptions;
+using QuickForecaster.Domain.ValueObjects;
 
 namespace QuickForecaster.Application.UnitTests.Clients
 {
@@ -18,24 +19,42 @@ namespace QuickForecaster.Application.UnitTests.Clients
     public class CreateClientCommandTests
     {
         [Fact]
-        public async Task Handle_WithValidClientDetails_CreateTheRecord()
+        public async Task Handle_WithValidClientDetailsWithoutAccountMgr_CreatesTheRecord()
         {
             using (var db = new InMemoryDataContextBuilder().BuildScoped())
             {
                 var handler = new CreateClientCommandHandler(db.Context);
                 await handler.Handle(new CreateClientCommand
                 {
-                    Name = "Fabrikam",
-                    AccountManagerEmail = "mgr1@fabrikam.com",
-                    AccountManagerName = "Manager One"
+                    Name = "Fabrikam"
                 }, CancellationToken.None);
 
                 using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(db.DatabaseName).Build())
                 {
                     var client = await varifyContext.Clients.FirstOrDefaultAsync(c => c.Name == "Fabrikam");
                     client.Should().NotBeNull();
-                    client.AccountManager.Email.Should().Be("mgr1@fabrikam.com");
-                    client.AccountManager.Email.Should().Be("Manager One");
+                }
+            }
+        }
+
+        [Fact]
+        public async Task Handle_WithValidClientDetailsWithAccountMgr_CreatesTheRecord()
+        {
+            using (var db = new InMemoryDataContextBuilder().BuildScoped())
+            {
+                var handler = new CreateClientCommandHandler(db.Context);
+                await handler.Handle(new CreateClientCommand
+                {
+                    Name = "Contoso",
+                    AccountManagerEmail = "mgr1@fabrikam.com",
+                    AccountManagerName = "Manager One"
+                }, CancellationToken.None);
+
+                using (var varifyContext = new InMemoryDataContextBuilder().WithDbName(db.DatabaseName).Build())
+                {
+                    var client = await varifyContext.Clients.FirstOrDefaultAsync(c => c.Name == "Contoso");
+                    client.AccountManager.Should()
+                        .Match<Contact>(am => am.DisplayName == "Manager One" && am.Email == "mgr1@fabrikam.com");
                 }
             }
         }
