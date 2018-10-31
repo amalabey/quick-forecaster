@@ -72,7 +72,7 @@
     <Build Include="Stored Procedures\spGetStatsByComplexity.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="Scripts\ImportSampleData.sql" />
+    <None Include="Scripts\ImportSampleData.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="QuickForecaster.Database.publish.xml" />
