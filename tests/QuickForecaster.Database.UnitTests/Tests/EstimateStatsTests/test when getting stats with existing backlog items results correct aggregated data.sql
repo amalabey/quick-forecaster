@@ -36,7 +36,7 @@ BEGIN
 	    NumberOfItems INT
     );
 
-	INSERT INTO expected (Confidence, NumberOfItems) SELECT 'High', 3;
+	INSERT INTO expected (Confidence, NumberOfItems) SELECT 'High', 5;
 	INSERT INTO expected (Confidence, NumberOfItems) SELECT 'Medium', 1;
 	INSERT INTO expected (Confidence, NumberOfItems) SELECT 'Low', 1;
 
