@@ -28,9 +28,16 @@ namespace QuickForecaster.Application
             }
         }
 
-        public static decimal PredictProbability(int duration)
+        public static decimal PredictProbability(DateTime completionDate)
         {
-            var possibleSimulations = Simulations.Count(s => s <= duration);
+            var duration = (completionDate - DateTime.Now).TotalDays;
+
+            if(duration < 0)
+            {
+                throw new ArgumentException("CompletionDate cannot be a past date");
+            }
+
+            var possibleSimulations = Simulations.Count(s => s <= (decimal)duration);
             var probabilityOfCompletion = (possibleSimulations / Simulations.Count) * 100;
             return probabilityOfCompletion;
         }
